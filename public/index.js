@@ -8,7 +8,7 @@ var HomePage = {
     return {
       message: "SUP",
       people: [],
-      newPerson: {name: "", bioVisible: true}
+      newPerson: {name: "", bio: "",bioVisible: true}
     };
   },
   created: function() {

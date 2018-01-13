@@ -34,13 +34,12 @@
 
     <div v-for="person in people">
       <h1 v-on:click="toggleBio(person)">{{ person.name }}</h1>
-      <p v-bind:class"={strike: !person.bioVisible}">{{ person.bio }}</p>
+      <p v-bind:class="{strike: !person.bioVisible}">{{ person.bio }}</p>
       BV: {{person.bioVisible}}
       <button v-on:click="removePerson(person)">Remove this Person</button>
     </div>
-
-      <p>Enter a new person and bio!</p>  
-        <p>Name: <input type="text" v-model="newPerson"></p>
+ 
+        <p>Name: <input type="text" v-model="newPerson.name"></p>
         <p>Bio: <input type="text" v-model="newPerson.bio"></p>
         <button v-on:click="addPerson()">Submit</button>
   
