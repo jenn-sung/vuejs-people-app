@@ -7,46 +7,33 @@ var HomePage = {
   data: function() {
     return {
       message: "SUP",
-      people: [
-
-        {
-          name: "Aaron Rodgers",
-          bio: "Packers QB",
-          biovisible: true
-        },
-        {
-          name: "Odell Beckham Jr.",
-          bio: "Giants WR",
-          biovisible: true
-        },
-        {
-          name: "Antonio Brown",
-          bio: "Steelers WR",
-          biovisible: true
-        },
-        {
-          name: "Deshaun Watson",
-          bio: "Texans QB",
-          biovisible: true
-        },
-        {
-          name: "Emmanuel Sanders",
-          bio: "Broncos WR",
-          biovisible: true
-        },
-        {
-          name: "Juju Smith-Schuster",
-          bio: "Steelers WR",
-          biovisible: true
-        }
-        
-      ],
-      personName: "",
-      personBio: ""
+      people: [],
+      newPerson: {name: "", bioVisible: true}
     };
   },
-  created: function() {},
-  methods: {},
+  created: function() {
+    axios.get('/people').then(function(response) {
+      console.log(this);
+      console.log(response.data);
+      this.people = response.data;
+    }.bind(this));
+  },
+  methods: {
+    addPerson: function() {
+      console.log(this.newPerson);
+      this.people.push(this.newPerson);
+    },
+    removePerson: function(inputPerson) {
+      console.log(inputPerson);
+      var index = this.people.indexOf(inputPerson);
+      console.log(index);
+      this.people.splice(index, 1);
+    },
+    toggleBio: function(inputPerson) {
+      inputPerson.bioVisible = !inputPerson.bioVisible;
+    }
+  },
+
   computed: {}
 };
 var router = new VueRouter({
